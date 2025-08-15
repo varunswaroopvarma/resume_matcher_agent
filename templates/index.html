@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resume-Job Matching AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <h1>Resume to Job Matching AI</h1>
+    <form method="POST" enctype="multipart/form-data">
+      <label for="job">Paste Job Description:</label>
+      <textarea id="job" name="job" required></textarea>
+
+      <label for="resume">Upload Resume (PDF):</label>
+      <input type="file" id="resume" name="resume" accept="application/pdf" required />
+
+      <button type="submit">Match Now</button>
+    </form>
+
+    {% if similarity is not none %}
+      <div class="result">
+        <h2>Similarity Score:</h2>
+        <p>{{ similarity }}%</p>
+        {% if missing_keywords %}
+          <h3>Missing Keywords from Job Description:</h3>
+          <ul>
+            {% for keyword in missing_keywords %}
+              <li>{{ keyword }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p>No missing keywords found.</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
