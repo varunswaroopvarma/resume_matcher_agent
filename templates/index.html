@@ -23,8 +23,9 @@
       <div class="result">
         <h2>Similarity Score:</h2>
         <p>{{ similarity }}%</p>
+
         {% if missing_keywords %}
-          <h3>Missing Keywords from Job Description:</h3>
+          <h3>Missing Keywords from Job Description (up to 50 shown):</h3>
           <ul>
             {% for keyword in missing_keywords %}
               <li>{{ keyword }}</li>
